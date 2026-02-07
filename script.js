@@ -283,11 +283,28 @@ function renderItem(container, id, count, components) {
             } catch (e) { }
         }
 
-        const potionTag = componentsData['minecraft:potion'] || componentsData["Potion"];
-        if (potionTag) {
-            const potionName = potionTag.value.replace("minecraft:", "");
+        const isPotionItem = id.includes('potion') || id.includes('tipped_arrow');
 
-            tooltipText += `<br><span style="color: #FF55FF;">${formatName(potionName)}</span>`;
+        if (isPotionItem) {
+            const potionTag = componentsData['minecraft:potion_contents']
+                || componentsData['minecraft:potion']
+                || componentsData["Potion"];
+
+            if (potionTag) {
+                let potionName = "";
+
+                if (potionTag.value && potionTag.value.potion) {
+                    potionName = potionTag.value.potion.value || potionTag.value.potion;
+                }
+                else if (potionTag.value) {
+                    potionName = potionTag.value;
+                }
+
+                if (potionName) {
+                    potionName = potionName.replace("minecraft:", "");
+                    tooltipText += `<br><span style="color: #FF55FF;">${formatName(potionName)}</span>`;
+                }
+            }
         }
 
         let enchantsObj = null;
