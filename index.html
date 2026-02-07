@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Inventory Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/nbt@0.7.0/nbt.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>Minecraft Inventory Viewer</h1>
+
+    <div class="controls">
+        <label for="file-upload" class="btn">Select Player .dat File</label>
+        <input id="file-upload" type="file" accept=".dat" />
+        <div id="status" style="margin-top: 10px;">Waiting for file...</div>
+    </div>
+
+    <div id="gui" class="inventory-gui">
+
+        <div class="section-title" style="text-align: center;">Armor</div>
+        <div class="armor-grid" id="armor-slots">
+            <div class="slot" data-slot="103" data-type="main"></div>
+            <div class="slot" data-slot="102" data-type="main"></div>
+            <div class="slot" data-slot="101" data-type="main"></div>
+            <div class="slot" data-slot="100" data-type="main"></div>
+        </div>
+
+        <div class="offhand-area">
+            <div style="margin-right: 10px; line-height: 40px;" class="section-title">Offhand:</div>
+            <div class="slot" data-slot="-106" data-type="main"></div>
+        </div>
+
+        <div class="section-title">Main Inventory</div>
+        <div class="inv-grid" id="main-slots">
+        </div>
+
+        <div class="section-title">Hotbar</div>
+        <div class="inv-grid" id="hotbar-slots">
+        </div>
+
+        <div class="section-title" style="color: #a020f0;">Ender Chest</div>
+        <div class="inv-grid" id="ender-slots">
+        </div>
+    </div>
+
+    <div id="meta-data" class="meta-info"></div>
+
+    <div id="shulkerModal" class="shulker-modal">
+        <div class="shulker-modal-content">
+            <span class="close-btn"
+                onclick="document.getElementById('shulkerModal').style.display='none'">&times;</span>
+            <div class="section-title" id="shulker-title">Shulker Box</div>
+            <div class="inv-grid" id="shulker-slots">
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
